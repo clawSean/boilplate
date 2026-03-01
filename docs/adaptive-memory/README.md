@@ -21,9 +21,36 @@ This folder extends OpenClaw's default agent setup with a complete memory system
 OpenClaw provides the foundation files (`SOUL.md`, `IDENTITY.md`, `USER.md`, `AGENTS.md`, `TOOLS.md`). This system adds:
 
 - **Structured memory storage** — `memory/` and `knowledge/` directories
-- **Automated curation** — Cron jobs that route content to the right places
-- **Weekly maintenance** — Pruning, graduation, and digests
-- **Monthly self-review** — System audits and skill feedback loops
+- **Automated curation** — Routes content to the right places every 5 hours
+- **Weekly maintenance** — Organize (COMPILE) then extract learnings (DISTILL)
+- **Monthly self-review** — System health and skill feedback (AUDIT)
+
+---
+
+## The Five Jobs
+
+| Job | Frequency | Model | Purpose |
+|-----|-----------|-------|---------|
+| **HEARTBEAT** | 30 min | Main | Capture notable content → daily files |
+| **CURATION** | 5 hours | Haiku | Route content → memory/knowledge |
+| **COMPILE** | Weekly | Haiku | Organize, archive, promote, prune |
+| **DISTILL** | Weekly | Sonnet | Extract lessons, graduate content |
+| **AUDIT** | Monthly | Sonnet+ | System health, skill review, security |
+
+### Intelligence Separation
+
+```
+CONTINUOUS:  Heartbeat → Curation
+             (capture)   (route)
+
+WEEKLY:      COMPILE  →  DISTILL
+             (Haiku)     (Sonnet)
+             organize    extract & learn
+
+MONTHLY:     AUDIT
+             (Sonnet+)
+             reflect & improve
+```
 
 ---
 
@@ -33,18 +60,17 @@ OpenClaw provides the foundation files (`SOUL.md`, `IDENTITY.md`, `USER.md`, `AG
 The complete architecture documentation. Start here.
 
 ### System Files (`system/`)
-These control how memory flows and gets processed:
 
-| File | Purpose |
-|------|---------|
-| `MEMORY.md` | Working memory + index to everything (~500 line cap) |
-| `HEARTBEAT.md` | Instructions for the 30-min heartbeat job |
-| `CURATION.md` | Routing decision tree for the 5-hour curation job |
-| `COMPILE.md` | Weekly pruning and graduation instructions |
-| `REEVALUATE.md` | Monthly system audit and skill review |
+| File | Model | Purpose |
+|------|-------|---------|
+| `MEMORY.md` | — | Working memory template (~500 line cap) |
+| `HEARTBEAT.md` | Main | 30-min capture instructions |
+| `CURATION.md` | Haiku | 5-hour routing decision tree |
+| `COMPILE.md` | Haiku | Weekly organization (mechanical) |
+| `DISTILL.md` | Sonnet | Weekly extraction (intelligent) |
+| `AUDIT.md` | Sonnet+ | Monthly review (reflective) |
 
 ### Templates (`templates/`)
-Example files for per-entity storage:
 
 | File | Purpose |
 |------|---------|
@@ -63,9 +89,10 @@ workspace/
 ├── [OpenClaw defaults]           # SOUL.md, IDENTITY.md, etc.
 ├── MEMORY.md                     # Working memory + index
 ├── HEARTBEAT.md                  # Heartbeat instructions  
-├── CURATION.md                   # Curation instructions
-├── COMPILE.md                    # Weekly compile instructions
-├── REEVALUATE.md                 # Monthly review instructions
+├── CURATION.md                   # Curation routing
+├── COMPILE.md                    # Weekly organization
+├── DISTILL.md                    # Weekly extraction
+├── AUDIT.md                      # Monthly review
 │
 ├── memory/                       # EPISODIC — what happened
 │   ├── daily/                    # Raw daily logs

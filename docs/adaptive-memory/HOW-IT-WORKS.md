@@ -223,23 +223,30 @@ Reference implementation: [ALucek/agentic-memory](https://github.com/ALucek/agen
                               │ + Index to all  │
                               └────────┬────────┘
                                        │
-        ┌──────────────────────────────┼──────────────────────────────┐
-        │                              │                              │
-        ▼                              ▼                              ▼
-┌──────────────┐              ┌──────────────┐              ┌──────────────┐
-│   COMPILE    │              │  REEVALUATE  │              │   FILE ORG   │
-│   (weekly)   │              │  (monthly)   │              │   (weekly)   │
-│              │              │              │              │              │
-│ Prune stale  │              │ Audit system │              │ Archive old  │
-│ Graduate →   │              │ Review skills│              │ daily files  │
-│ knowledge    │              │ Extract      │              │              │
-│ Weekly digest│              │ lessons      │              │              │
-└──────────────┘              └──────────────┘              └──────────────┘
+        ┌─────────────────────────┬─────────────────────────┐
+        │                         │                         │
+        ▼                         ▼                         ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│     COMPILE     │     │     DISTILL     │     │      AUDIT      │
+│    (weekly)     │────▶│    (weekly)     │     │    (monthly)    │
+│     Haiku       │     │     Sonnet      │     │     Sonnet+     │
+├─────────────────┤     ├─────────────────┤     ├─────────────────┤
+│ • Archive old   │     │ • Extract       │     │ • Foundation    │
+│ • Promote       │     │   lessons       │     │   file review   │
+│ • Prune stale   │     │ • Graduate      │     │ • System health │
+│ • Weekly digest │     │   content       │     │ • Skill feedback│
+│                 │     │ • Find patterns │     │ • Security scan │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+        │                         │                         │
+        └─────────────────────────┴─────────────────────────┘
+                                  │
+                           Organized, learned,
+                              improved
 ```
 
 ---
 
-## The Five Stages
+## The Six Stages
 
 ### Stage 1: Conversations (Realtime)
 
@@ -289,16 +296,35 @@ Curation reads daily files and makes routing decisions:
 
 ---
 
-### Stage 4: Compile (Weekly)
+### Stage 4: Compile (Weekly) — The Organizer
 
-**Purpose:** Maintain and mature the knowledge base.
+**Model:** Haiku (rule-based, no judgment)  
+**Purpose:** Mechanical organization with clear rules.
 
-Weekly compilation:
-1. **Prunes** stale entries from MEMORY.md
+COMPILE handles:
+1. **Archives** old daily files (30+ days → `memory/archive/`)
+2. **Promotes** entities exceeding thresholds (10+ lines → own file)
+3. **Prunes** obviously stale content (completed reminders, superseded entries)
+4. **Produces** weekly digest with factual summary
+5. **Verifies** structure integrity
+
+**No judgment calls** — just "if X then Y" operations. Save the smart model for DISTILL.
+
+**Output:** `memory/daily/YYYY-MM-DD-weekly-digest.md`
+
+---
+
+### Stage 5: Distill (Weekly) — The Learner
+
+**Model:** Sonnet (needs judgment and pattern recognition)  
+**Purpose:** Extract learnings and graduate content.
+
+DISTILL runs after COMPILE and handles:
+1. **Extracts** lessons from the week's experiences (mistakes, successes, patterns)
 2. **Graduates** mature content from memory → knowledge
-3. **Consolidates** scattered related content
-4. **Extracts** implicit lessons
-5. **Produces** a weekly digest
+3. **Detects** contradictions between sources
+4. **Identifies** emerging patterns worth capturing
+5. **Updates** weekly digest with distillation findings
 
 **Graduation criteria:**
 - Is it factual rather than experiential?
@@ -306,23 +332,24 @@ Weekly compilation:
 - Does it have 5+ facts or references?
 - Would it help someone without relationship context?
 
-**Output:** `memory/daily/YYYY-MM-DD-weekly-digest.md`
+**Output:** Updated `knowledge/lessons/`, graduated files, enhanced digest
 
 ---
 
-### Stage 5: Reevaluate (Monthly)
+### Stage 6: Audit (Monthly) — The Auditor
 
-**Purpose:** Audit the system and evolve the agent.
+**Model:** Sonnet+ (needs reasoning depth)  
+**Purpose:** Deep reflection on system health and agent evolution.
 
-Monthly reevaluation covers:
+Monthly audit covers:
 1. **Foundation files** — Are SOUL.md, IDENTITY.md, etc. still accurate?
-2. **Memory health** — Is heartbeat capturing the right things?
-3. **Skill feedback** — What tools worked well? What caused friction?
-4. **Lessons review** — Are existing lessons still valid? Any new ones to extract?
+2. **Memory health** — Is the pipeline (heartbeat → curation → compile → distill) working?
+3. **Skill feedback** — What tools caused friction? What worked well?
+4. **Lessons validation** — Are existing lessons still valid?
 5. **Security audit** — Any exposed credentials or sensitive content?
-6. **Meta-review** — Is this reevaluation process itself working?
+6. **Meta-review** — Is this audit process itself working?
 
-**Output:** `memory/daily/YYYY-MM-DD-reevaluation.md` + proposed updates
+**Output:** `memory/daily/YYYY-MM-DD-audit.md` + proposed updates
 
 ---
 
@@ -342,8 +369,9 @@ workspace/
 │   ├── MEMORY.md            # Working memory + index (~500 lines max)
 │   ├── HEARTBEAT.md         # Heartbeat job instructions
 │   ├── CURATION.md          # Curation job instructions
-│   ├── COMPILE.md           # Weekly compile instructions
-│   ├── REEVALUATE.md        # Monthly review instructions
+│   ├── COMPILE.md           # Weekly organization (Haiku)
+│   ├── DISTILL.md           # Weekly extraction (Sonnet)
+│   ├── AUDIT.md             # Monthly review (Sonnet+)
 │   └── HOW-IT-WORKS.md      # This document
 │
 ├── memory/                   # EPISODIC — what happened
@@ -368,7 +396,7 @@ workspace/
 └── skills/                   # Tool/capability definitions
     └── <skill>/
         ├── SKILL.md         # How to use this skill
-        └── NOTES.md         # Usage feedback (populated by reevaluate)
+        └── NOTES.md         # Usage feedback (populated by audit)
 ```
 
 ---
@@ -424,7 +452,7 @@ Lessons are the distillation of experience into actionable rules.
 - `social.md` — Per-person interaction rules
 - `skills.md` — Tool usage patterns
 
-**Why provenance matters:** Including when and why a lesson was learned allows future reevaluation. Circumstances change; lessons may become obsolete.
+**Why provenance matters:** Including when and why a lesson was learned allows future audit. Circumstances change; lessons may become obsolete.
 
 ---
 
@@ -434,9 +462,45 @@ Lessons are the distillation of experience into actionable rules.
 |-----|-----------|-------|---------|
 | Heartbeat | Every 30 min | Main | Raw capture → daily files |
 | Curation | Every 5 hours | Haiku | Route → long-term storage |
-| File Org | Sunday 3am | Haiku | Archive old daily files |
-| Compile | Sunday | Haiku/Sonnet | Prune, graduate, digest |
-| Reevaluate | 1st of month | Sonnet+ | System audit, skill feedback |
+| Compile | Sunday | Haiku | Organize, archive, promote, prune |
+| Distill | Sunday (after Compile) | Sonnet | Extract lessons, graduate content |
+| Audit | 1st of month | Sonnet+ | System health, skill review, security |
+
+### Complete Job System
+
+```
+CONTINUOUS (keeps things flowing):
+─────────────────────────────────────────────────────────────────
+  HEARTBEAT (30 min)           CURATION (5 hours)
+  Main model                   Haiku
+       │                            │
+  Scan sessions              Route content to:
+  Extract notable            • memory/by-contact/
+  Create reminders           • memory/by-channel/
+       │                     • knowledge/topics/
+       ▼                     • knowledge/lessons/
+  memory/daily/                     │
+       └────────────────────────────┘
+
+WEEKLY (keeps things organized & learned):
+─────────────────────────────────────────────────────────────────
+  COMPILE (Haiku)  ────▶  DISTILL (Sonnet)
+       │                       │
+  Archive old files       Extract lessons
+  Promote entities        Graduate content  
+  Prune stale             Find patterns
+  Weekly digest           Update lessons
+
+MONTHLY (keeps things healthy & evolving):
+─────────────────────────────────────────────────────────────────
+  AUDIT (Sonnet+)
+       │
+  Foundation review
+  System health check
+  Skill feedback loop
+  Security scan
+  Meta-review
+```
 
 ---
 
@@ -454,7 +518,7 @@ Lower-tier models may:
 - Miss edge cases in the decision trees
 - Introduce subtle bugs that compound over time
 
-**Rule of thumb:** If you're touching foundation files (`SOUL.md`, `AGENTS.md`, `MEMORY.md`) or system files (`CURATION.md`, `COMPILE.md`, `REEVALUATE.md`), use a premier model.
+**Rule of thumb:** If you're touching foundation files (`SOUL.md`, `AGENTS.md`, `MEMORY.md`) or system files (`CURATION.md`, `COMPILE.md`, `DISTILL.md`, `AUDIT.md`), use a premier model.
 
 ---
 
@@ -511,7 +575,7 @@ All memory system cron jobs should run in **isolated sessions**, not the main se
 **Problems with running crons in main session:**
 - Curation reads dozens of daily files → all that content enters main context
 - Compile processes a week of history → massive context pollution
-- Reevaluation audits everything → even worse
+- Audit reviews everything → even worse
 - Main session becomes sluggish and unfocused
 
 **Isolated sessions:**
@@ -526,7 +590,8 @@ All memory system cron jobs should run in **isolated sessions**, not the main se
 |-----|---------|-------|-----|
 | Curation | `isolated` | Haiku | High volume, routing decisions |
 | Compile | `isolated` | Haiku/Sonnet | Weekly processing |
-| Reevaluate | `isolated` | Sonnet+ | Deep analysis, needs reasoning |
+| Distill | `isolated` | Sonnet | Extraction, graduation |
+| Audit | `isolated` | Sonnet+ | Deep analysis, needs reasoning |
 | File Org | `isolated` | Haiku | Simple file operations |
 
 ---
@@ -549,7 +614,7 @@ Always record when something was learned and why. This enables future validation
 Heartbeat, curation, and file organization run automatically. Humans focus on the interesting decisions.
 
 ### 6. Review Regularly
-Weekly compilation keeps things pruned. Monthly reevaluation ensures the system evolves.
+Weekly compilation and distillation keep things pruned and learned. Monthly audit ensures the system evolves.
 
 ### 7. Fail Safe
 Use `trash` instead of `rm`. Capture more than necessary — easier to prune than recover.
@@ -562,7 +627,8 @@ Use `trash` instead of `rm`. Capture more than necessary — easier to prune tha
 |----------|---------|
 | `CURATION.md` | Detailed routing decision tree for the curation job |
 | `COMPILE.md` | Step-by-step instructions for weekly compilation |
-| `REEVALUATE.md` | Phase-by-phase guide for monthly reevaluation |
+| `DISTILL.md` | Weekly lesson extraction and graduation |
+| `AUDIT.md` | Monthly system review and health check |
 | `AGENTS.md` | Operating guidelines including session loading rules |
 | `MEMORY.md` | The working memory itself, including the structure map |
 

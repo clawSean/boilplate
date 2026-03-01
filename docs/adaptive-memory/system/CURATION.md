@@ -70,7 +70,7 @@ Something that teaches "do X, not Y" — mistakes made, gotchas discovered, patt
 **Rule:** What to do / not do
 ```
 
-**Key:** Include provenance (when/why learned) so lessons can be validated during reevaluation.
+**Key:** Include provenance (when/why learned) so lessons can be validated during audit.
 
 ---
 
