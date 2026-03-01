@@ -2,35 +2,35 @@
 
 **A cognitive architecture for persistent AI agents**
 
-This folder contains a complete memory system implementation based on the four memory systems from cognitive psychology: Working, Episodic, Semantic, and Procedural memory.
+This folder extends OpenClaw's default agent setup with a complete memory system based on the four memory systems from cognitive psychology: Working, Episodic, Semantic, and Procedural memory.
 
 ---
 
 ## Quick Start
 
-1. Copy the `foundation/` files to your agent's workspace
-2. Copy the `system/` files for memory operations
-3. Customize each file for your agent's identity and use case
-4. Set up cron jobs for automated memory maintenance
-5. Read `HOW-IT-WORKS.md` for the full architecture
+1. Read `HOW-IT-WORKS.md` for the full architecture
+2. Copy the `system/` files to your agent's workspace
+3. Copy the `templates/` to your `memory/` folder
+4. Update your `AGENTS.md` with the session loading rules from HOW-IT-WORKS.md
+5. Set up cron jobs for automated memory maintenance
+
+---
+
+## What This Adds to OpenClaw
+
+OpenClaw provides the foundation files (`SOUL.md`, `IDENTITY.md`, `USER.md`, `AGENTS.md`, `TOOLS.md`). This system adds:
+
+- **Structured memory storage** — `memory/` and `knowledge/` directories
+- **Automated curation** — Cron jobs that route content to the right places
+- **Weekly maintenance** — Pruning, graduation, and digests
+- **Monthly self-review** — System audits and skill feedback loops
 
 ---
 
 ## Contents
 
 ### [HOW-IT-WORKS.md](./HOW-IT-WORKS.md)
-The complete architecture documentation. Start here to understand the system.
-
-### Foundation Files (`foundation/`)
-These define who the agent is and how it operates:
-
-| File | Purpose |
-|------|---------|
-| `SOUL.md` | Core values, personality, boundaries |
-| `IDENTITY.md` | Name, appearance, voice |
-| `USER.md` | Information about the human(s) being helped |
-| `AGENTS.md` | Operating guidelines, session loading rules |
-| `TOOLS.md` | Environment-specific notes, credentials locations |
+The complete architecture documentation. Start here.
 
 ### System Files (`system/`)
 These control how memory flows and gets processed:
@@ -56,39 +56,36 @@ Example files for per-entity storage:
 
 ## Directory Structure
 
-After setup, your workspace should look like:
+After setup, your workspace adds these directories:
 
 ```
 workspace/
-├── SOUL.md, IDENTITY.md, USER.md    # Who the agent is
-├── AGENTS.md, TOOLS.md               # How it operates
-├── MEMORY.md                         # Working memory + index
-├── HEARTBEAT.md                      # Heartbeat instructions
-├── CURATION.md                       # Curation instructions
-├── COMPILE.md                        # Weekly compile instructions
-├── REEVALUATE.md                     # Monthly review instructions
+├── [OpenClaw defaults]           # SOUL.md, IDENTITY.md, etc.
+├── MEMORY.md                     # Working memory + index
+├── HEARTBEAT.md                  # Heartbeat instructions  
+├── CURATION.md                   # Curation instructions
+├── COMPILE.md                    # Weekly compile instructions
+├── REEVALUATE.md                 # Monthly review instructions
 │
-├── memory/                           # Episodic (what happened)
-│   ├── daily/                        # Raw daily logs
-│   ├── by-contact/                   # Per-person memory
-│   ├── by-channel/                   # Per-group memory
-│   ├── by-topic/                     # Experiential topics
-│   └── ideas/                        # Raw brainstorms
+├── memory/                       # EPISODIC — what happened
+│   ├── daily/                    # Raw daily logs
+│   ├── by-contact/               # Per-person memory
+│   ├── by-channel/               # Per-group memory
+│   ├── by-topic/                 # Experiential topics
+│   └── ideas/                    # Raw brainstorms
 │
-├── knowledge/                        # Semantic (what's true)
-│   ├── topics/                       # Factual reference
-│   ├── entities/                     # Named things
-│   ├── lessons/                      # Learned rules
-│   └── reference/                    # Stable docs
-│
-└── skills/                           # Procedural (how to do things)
+└── knowledge/                    # SEMANTIC — what's true
+    ├── topics/                   # Factual reference
+    ├── entities/                 # Named things
+    ├── lessons/                  # Learned rules
+    └── reference/                # Stable docs
 ```
 
 ---
 
 ## Configuration
 
-See `HOW-IT-WORKS.md` for detailed configuration guidance, including:
+See `HOW-IT-WORKS.md` for detailed guidance on:
 
 - **Premier models** for structural work
 - **`dmScope: per-channel-peer`** for per-contact memory isolation
